@@ -7,72 +7,134 @@
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for a more engaging, professional aesthetic */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f7fbf8; /* Very light green tint for softness */
-        } 
+        /* Custom styles for a professional aesthetic */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+        /* NATURE VIBES: Changed background to a very pale, natural off-white/green */
+        body { font-family: 'Inter', sans-serif; background-color: #fafff5; } 
         
-        .header-shadow { 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Stronger shadow */
-            border-bottom: 1px solid #e0f2f1;
-        }
+        .header-shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .card { 
             background: white; 
-            border-radius: 1rem; /* Slightly more rounded */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.03); 
-            border: 1px solid #edf8f5; 
+            border-radius: 0.75rem; /* Slightly less rounded */
+            /* NATURE VIBES: Softened shadow for a less 'hard' look */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04), 0 2px 5px rgba(0, 0, 0, 0.02); 
+            /* NATURE VIBES: Subtle light green/gray border */
+            border: 1px solid #e0e7e9; 
         }
         .input-style {
             border: 1px solid #cbd5e1;
             padding: 0.75rem;
             border-radius: 0.5rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
         .input-style:focus {
-            border-color: #065f46; /* Deep green focus */
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.4);
+            border-color: #10b981;
+            box-shadow: 0 0 0 1px #10b981;
             outline: none;
         }
+        /* --- COOLER BUTTON STYLES --- */
         .btn-primary { 
-            /* Deep, premium gradient */
-            background-image: linear-gradient(to right, #065f46, #10b981); 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            box-shadow: 0 8px 15px -5px rgba(16, 185, 129, 0.6); /* Vibrant shadow */
-            font-weight: 700;
+            /* Gradient for depth, stronger shadow */
+            background-image: linear-gradient(to right, #10b981 0%, #059669 100%);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+            border: none;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); /* Stronger shadow */
+            color: white; /* Ensure text is white */
+            font-weight: 700; /* Bold text */
         }
         .btn-primary:hover { 
-            background-image: linear-gradient(to right, #10b981, #065f46);
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 12px 20px -5px rgba(16, 185, 129, 0.8);
+            /* Shift gradient, lift element, reduce shadow opacity slightly */
+            background-image: linear-gradient(to left, #10b981 0%, #059669 100%);
+            transform: translateY(-2px); /* Higher lift on hover */
+            box-shadow: 0 8px 20px rgba(5, 150, 105, 0.5); 
         }
+        .btn-primary:active {
+            /* Press effect */
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(5, 150, 105, 0.3);
+        }
+        /* --- END COOLER BUTTON STYLES --- */
+        
         .floating-bot {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
             cursor: pointer; z-index: 50;
-            transition: transform 0.3s;
+            /* Removed distracting pulsing animation */
         }
-        .floating-bot:hover {
-            transform: translateY(-5px) scale(1.05);
-        }
-
+        /* DASHBOARD ENHANCEMENTS */
         .stat-box {
             background: white;
             border-radius: 0.75rem;
             padding: 1.5rem;
-            border-left: 5px solid;
-            box-shadow: 0 1px 6px rgba(0,0,0,0.07);
-            transition: all 0.3s;
+            /* Default subtle shadow */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s;
+            position: relative;
+            overflow: hidden;
         }
         .stat-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
         }
-        /* Custom Green Text Gradient for Title */
-        .green-gradient-text {
-            background: linear-gradient(45deg, #065f46, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 900;
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 10;
+        }
+        /* Specific stat box colors and gradients */
+        .stat-box-green {
+            border: 1px solid #059669;
+        }
+        .stat-box-green::before {
+            background: linear-gradient(135deg, #a7f3d0 0%, transparent 50%);
+        }
+        .stat-box-blue {
+            border: 1px solid #3b82f6;
+        }
+        .stat-box-blue::before {
+            background: linear-gradient(135deg, #bfdbfe 0%, transparent 50%);
+        }
+        .stat-box-red {
+            border: 1px solid #ef4444;
+        }
+        .stat-box-red::before {
+            background: linear-gradient(135deg, #fecaca 0%, transparent 50%);
+        }
+        .stat-box-orange {
+            border: 1px solid #f97316;
+        }
+        .stat-box-orange::before {
+            background: linear-gradient(135deg, #fed7aa 0%, transparent 50%);
+        }
+
+        /* Styles for the new Stacked Bar Footprint Chart */
+        .stacked-bar-container {
+            height: 2.5rem; /* Taller bar for impact */
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stacked-bar-segment {
+            height: 100%;
+            transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        /* Styles for Achievements Page */
+        .achieve-day {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            font-size: 15px;
+            font-weight: 700;
         }
     </style>
     <!-- Load Firebase SDKs -->
@@ -106,11 +168,31 @@
             { id: 'eco_warriors', name: 'Eco-Warriors United', score: 120000, members: 25, motto: "Leading the charge in verifiable reduction.", icon: 'shield' },
             { id: 'green_machines', name: 'Green Machines', score: 88000, members: 8, motto: "Efficiency and clean energy is our game.", icon: 'bolt' },
         ];
-
+        
+        // --- MOCK ACHIEVEMENT DATA ---
+        const MOCK_ACHIEVEMENT_DATA = {
+            streaks: {
+                current: 9, 
+                longest: 14, 
+                // Array representing the last 7 days of activity (0 = Missed, 1 = Complete)
+                last7Days: [1, 1, 0, 1, 1, 1, 1] // Today is the rightmost element (Index 6)
+            },
+            badges: [
+                { id: 1, name: "Initial Engagement", emoji: "🌱", earned: true, date: "01/05/2024", goal: "Complete 1st Initiative" },
+                { id: 2, name: "Transport Optimization", emoji: "🚶", earned: true, date: "03/10/2024", goal: "Log 5 days of low-carbon commute" },
+                { id: 3, name: "Resource Management", emoji: "🗑️", earned: true, date: "06/20/2024", goal: "Log 10 waste reduction actions" },
+                { id: 4, name: "Systemic Efficiency", emoji: "💡", earned: false, goal: "Reduce home energy use by 10%" },
+                { id: 5, name: "Sustained Compliance", emoji: "📈", earned: true, date: "08/01/2024", goal: "Achieve 7-day compliance streak" },
+                { id: 6, name: "Load Shedding Champion", emoji: "🔌", earned: false, goal: "7 days of low peak energy use" },
+                { id: 7, name: "Global Impact", emoji: "🌎", earned: false, goal: "Complete 10 strategic initiatives" },
+                { id: 8, name: "Master Planner", emoji: "🧭", earned: false, goal: "Set and meet 3 long-term goals" },
+            ]
+        };
+        // -----------------------------
 
         // Global State Management
         window.state = {
-            view: 'home', // 'home', 'calculator', 'dashboard', 'fullLeaderboard'
+            view: 'home', // 'home', 'calculator', 'dashboard', 'fullLeaderboard', 'achievements'
             userId: null,
             isAuthReady: false,
             userProfile: {
@@ -415,7 +497,7 @@
 
             // Show confirmation
             const conf = document.getElementById('message-box');
-            const color = (action === 'join' && newGroupId === groupId) ? 'text-[#065f46]' : action === 'leave' ? 'text-red-600' : 'text-gray-700';
+            const color = (action === 'join' && newGroupId === groupId) ? 'text-[#059669]' : action === 'leave' ? 'text-red-500' : 'text-gray-700';
             conf.querySelector('#message-content').innerHTML = `
                 <p class="text-2xl font-bold ${color} mb-3">${action === 'join' && newGroupId === groupId ? 'GROUP JOINED!' : action === 'leave' && !newGroupId ? 'GROUP LEFT' : 'STATUS'}</p>
                 <p class="text-gray-700">${message}</p>
@@ -443,29 +525,26 @@
 
         // Custom SVG icons to replace emojis in the home page and dashboard
         window.getIcon = (name, classes) => {
-            // Updated icons with subtle green background circle for better visual pop
-            const iconContent = (strokeColor = 'currentColor') => {
-                switch (name) {
-                    case 'graph-up': // Quantifiable Reduction
-                        return `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10l5-5m0 0l5 5m-5-5v14m5 5l5-5m0 0l5 5m-5-5v14"></path>`;
-                    case 'light-bulb': // AI Personalization
-                        return `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.879 16.121A3 3 0 1012 15.5m-2.121.621l-3 3M17 12a5 5 0 11-10 0 5 5 0 0110 0z"></path>`;
-                    case 'handshake': // Community & Loyalty
-                        return `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.854 16.854a.5.5 0 01-.708 0l-4-4a.5.5 0 01.708-.708L12 15.586l3.854-3.854a.5.5 0 01.708.708l-4 4zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`;
-                    case 'trophy': // Leaderboard
-                        return `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v3.5l1.5 1.5M16 8l1-4h3M8 8l-1-4H3M12 16h2a2 2 0 002-2v-4a2 2 0 00-2-2h-4a2 2 0 00-2 2v4a2 2 0 002 2z"></path>`;
-                    default:
-                        return '';
-                }
-            };
-
-            return `
-                <div class="relative inline-flex items-center justify-center p-3 rounded-full bg-[#e0f2f1] shadow-inner">
-                    <svg class="${classes} text-[#065f46]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        ${iconContent()}
-                    </svg>
-                </div>
-            `;
+            switch (name) {
+                case 'graph-up': // Quantifiable Reduction
+                    return `<svg class="${classes}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10l5-5m0 0l5 5m-5-5v14m5 5l5-5m0 0l5 5m-5-5v14"></path></svg>`;
+                case 'light-bulb': // AI Personalization
+                    return `<svg class="${classes}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.879 16.121A3 3 0 1012 15.5m-2.121.621l-3 3M17 12a5 5 0 11-10 0 5 5 0 0110 0z"></path></svg>`;
+                case 'handshake': // Community & Loyalty
+                    return `<svg class="${classes}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.854 16.854a.5.5 0 01-.708 0l-4-4a.5.5 0 01.708-.708L12 15.586l3.854-3.854a.5.5 0 01.708.708l-4 4zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+                case 'trophy': // Leaderboard
+                    return `<svg class="${classes}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v3.5l1.5 1.5M16 8l1-4h3M8 8l-1-4H3M12 16h2a2 2 0 002-2v-4a2 2 0 00-2-2h-4a2 2 0 00-2 2v4a2 2 0 002 2z"></path></svg>`;
+                case 'co2-red':
+                    return `<svg class="${classes}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+                case 'points':
+                    return `<svg class="${classes}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+                case 'reduction':
+                    return `<svg class="${classes}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8m-4-2H3m0 0v-8m0 8l8-8"></path></svg>`;
+                case 'group':
+                    return `<svg class="${classes}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20h-2m2 0h-2m0 0H9m1.458-4.5a3 3 0 011.625-2.824M7.785 17.5l-1.637 1.637C5.811 19.467 5 20 4 20h-.5M15 4a3 3 0 11-6 0 3 3 0 016 0zm-6 0h6"></path></svg>`;
+                default:
+                    return `<span class="${classes}">?</span>`;
+            }
         };
 
 
@@ -488,6 +567,9 @@
                     break;
                 case 'fullLeaderboard':
                     html = window.renderFullLeaderboard();
+                    break;
+                case 'achievements':
+                    html = window.renderAchievements(); // New View
                     break;
             }
             app.innerHTML = html;
@@ -526,9 +608,9 @@
             // Using a simple message box to replace alert()
             const msg = document.getElementById('message-box');
             msg.querySelector('#message-content').innerHTML = `
-                <p class="text-2xl font-bold text-[#065f46] mb-3">
+                <p class="text-2xl font-bold text-[#059669] mb-3">
                     <span class="inline-block align-middle mr-2">
-                        <svg class="w-6 h-6 text-[#10b981]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM7 9a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                        <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM7 9a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
                     </span>
                     Instant Climate Win!
                 </p>
@@ -556,12 +638,12 @@
             // Show confirmation
             const conf = document.getElementById('message-box');
             conf.querySelector('#message-content').innerHTML = `
-                <p class="text-2xl font-bold text-[#065f46] mb-3">SUCCESS!</p>
+                <p class="text-2xl font-bold text-[#059669] mb-3">SUCCESS!</p>
                 <p class="text-gray-700">You earned <strong>50 Quest Points!</strong> Check the leaderboard!</p>
             `;
             conf.classList.remove('hidden');
             document.getElementById('message-action').innerHTML = `
-                <button onclick="document.getElementById('message-box').classList.add('hidden');" class="px-6 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition">Close</button>
+                <button onclick="document.getElementById('message-box').classList.add('hidden');" class="px-6 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition font-semibold">Close</button>
             `;
         };
         
@@ -611,7 +693,7 @@
                 // Show completion message
                 const conf = document.getElementById('message-box');
                 conf.querySelector('#message-content').innerHTML = `
-                    <p class="text-2xl font-bold text-[#065f46] mb-3">SUCCESS!</p>
+                    <p class="text-2xl font-bold text-[#059669] mb-3">SUCCESS!</p>
                     <p class="text-gray-700">Quest complete: You earned <strong>${points} Quest Points!</strong></p>
                 `;
                 conf.classList.remove('hidden');
@@ -624,7 +706,7 @@
         window.handleVerification = () => {
             const msg = document.getElementById('message-box');
             msg.querySelector('#message-content').innerHTML = `
-                <p class="text-2xl font-bold text-[#065f46] mb-3">
+                <p class="text-2xl font-bold text-[#059669] mb-3">
                     <span class="inline-block align-middle mr-2">
                         <svg class="w-6 h-6 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </span>
@@ -639,6 +721,15 @@
             `;
         };
 
+        // Helper function for Streak Calendar
+        function getDayLetter(index) {
+            const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+            const todayIndex = new Date().getDay(); // 0 (Sunday) to 6 (Saturday)
+            // Calculate the day of the week for the past 7 days (index 0 is 7 days ago, index 6 is today)
+            const targetDayIndex = (todayIndex - (6 - index) + 7) % 7; 
+            return dayNames[targetDayIndex];
+        }
+
 
         // --- HTML TEMPLATES ---
 
@@ -647,16 +738,22 @@
                 <div class="max-w-7xl mx-auto flex justify-between items-center">
                     <div class="text-2xl font-bold text-gray-900 flex items-center">
                         <svg class="w-7 h-7 mr-2 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                        <span class="green-gradient-text">Carbon</span><span class="font-light">Quest</span>
+                        <span class="font-extrabold text-[#10b981]">Carbon</span><span class="font-light">Quest</span>
                     </div>
-                    <nav class="space-x-8 text-sm hidden sm:flex items-center">
-                        <button class="text-gray-600 hover:text-[#065f46] transition font-medium" data-view="home">Home</button>
-                        ${window.state.userProfile.totalCo2Kg > 0 ? `<button class="text-gray-600 hover:text-[#065f46] transition font-medium" data-view="dashboard">Dashboard</button>` : ''}
-                        <div class="px-4 py-1 bg-gray-100 text-gray-700 rounded-full font-medium shadow-inner text-xs">
+                    <nav class="space-x-4 text-sm hidden sm:flex items-center">
+                        <button class="text-gray-600 hover:text-[#059669] transition font-medium" data-view="home">Home</button>
+                        ${window.state.userProfile.totalCo2Kg > 0 ? `<button class="text-gray-600 hover:text-[#059669] transition font-medium" data-view="dashboard">Dashboard</button>` : ''}
+                        
+                        <!-- NEW ACHIEVEMENTS BUTTON -->
+                        <button class="px-3 py-1 text-sm font-bold bg-yellow-400 text-gray-800 rounded-full hover:bg-yellow-500 transition shadow-md" data-view="achievements">
+                            🏆 Achievements
+                        </button>
+                        
+                        <div class="px-4 py-1 bg-gray-100 text-gray-700 rounded-full font-medium shadow-inner">
                             User ID: ${window.state.userId ? window.state.userId : 'Guest'}
                         </div>
                     </nav>
-                    <button class="sm:hidden text-gray-600 hover:text-[#065f46]">
+                    <button class="sm:hidden text-gray-600 hover:text-[#059669]">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                 </div>
@@ -667,12 +764,12 @@
             ${window.renderHeader()}
             <main class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <p class="text-base font-semibold text-[#10b981] tracking-wider uppercase mb-4">PITCH DEMO: ESG & Behavioral Science</p>
+                    <p class="text-base font-semibold text-[#059669] tracking-wider uppercase mb-4">PITCH DEMO: ESG & Behavioral Science</p>
                     
                     <!-- App Logo Visual (Large) -->
                     <div class="mb-10 inline-flex flex-col items-center">
                         <!-- Large SVG: Leaf on a Globe (The actual Logo Icon) -->
-                        <svg class="w-24 h-24 text-[#065f46]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-24 h-24 text-[#059669]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <!-- Globe base -->
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c4.97 0 9-3.582 9-8s-4.03-8-9-8-9 3.582-9 8 4.03 8 9 8z"></path>
                             <!-- Lines of latitude/longitude -->
@@ -682,7 +779,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 13v-2m-2-1l-2-2m4 0l2-2M12 13l2 2m-4 0l-2 2"></path>
                         </svg>
                         <div class="mt-3 text-5xl font-extrabold text-gray-900 tracking-tight leading-snug">
-                            <span class="green-gradient-text">Carbon</span><span class="font-light">Quest</span>
+                            <span class="font-extrabold text-[#10b981]">Carbon</span><span class="font-light">Quest</span>
                         </div>
                     </div>
                     <!-- End App Logo Visual (Large) -->
@@ -690,39 +787,46 @@
                     <h1 class="text-5xl sm:text-7xl font-extrabold text-gray-900 tracking-tight leading-snug">
                         The Climate Crisis Needs a Game Changer.
                     </h1>
-                    <p class="mt-8 max-w-3xl mx-auto text-xl text-gray-600 font-medium">
-                        **Action-Oriented Mission Statement:** Dedicated to **UN SDG 11**, Carbon Quest transforms climate intent into measurable, collective action using gamification and AI coaching for sustainable urban development.
+                    <p class="mt-8 max-w-3xl mx-auto text-xl text-gray-600">
+                        Carbon Quest is an innovative platform that leverages **gamification, AI-driven coaching, and real-time data** (powered by Firestore) to transform individual climate intent into measurable, collective action.
                     </p>
                     
-                    <div class="mt-14 flex flex-col sm:flex-row justify-center space-y-5 sm:space-y-0 sm:space-x-8">
-                        <button class="btn-primary text-white text-xl font-extrabold py-4 px-10 rounded-xl shadow-2xl">
+                    <div class="mt-12 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                        <button class="btn-primary text-xl py-3 px-8 rounded-lg transform transition"
+                            data-view="calculator">
                             🚀 Calculate Footprint & Start Quest
                         </button>
-                        <button id="pop-up-trigger" class="py-4 px-10 text-lg font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition shadow-md hover:shadow-lg">
+                        <button id="pop-up-trigger" class="py-3 px-8 text-lg font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition shadow-sm">
                             Show Feature: Immediate Impact
                         </button>
                     </div>
                 </div>
 
-                <!-- Value Proposition Grid -->
+                <!-- Value Proposition Grid - ADDED GREEN ACCENTS -->
                 <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="card p-8 text-center border-t-4 border-[#10b981] hover:border-[#065f46] transform hover:scale-[1.01] transition duration-300">
+                    <!-- Card 1: Quantifiable Reduction -->
+                    <div class="card p-8 text-center border-b-4 border-[#059669] hover:bg-green-50 transition duration-300">
                         <div class="mb-4 flex justify-center">
-                            ${window.getIcon('graph-up', 'w-10 h-10')}
+                            <!-- Icon color changed to deeper green for accent -->
+                            ${window.getIcon('graph-up', 'w-10 h-10 text-[#059669]')}
                         </div>
                         <h3 class="text-xl font-bold text-gray-900">Quantifiable Reduction</h3>
                         <p class="mt-2 text-gray-500">From complex data to simple, verifiable metrics tracked in real-time with Firestore.</p>
                     </div>
-                    <div class="card p-8 text-center border-t-4 border-[#10b981] hover:border-[#065f46] transform hover:scale-[1.01] transition duration-300">
+                    <!-- Card 2: AI Personalization -->
+                    <div class="card p-8 text-center border-b-4 border-[#059669] hover:bg-green-50 transition duration-300">
                         <div class="mb-4 flex justify-center">
-                             ${window.getIcon('light-bulb', 'w-10 h-10')}
+                             <!-- Icon color changed to deeper green for accent -->
+                             ${window.getIcon('light-bulb', 'w-10 h-10 text-[#059669]')}
                         </div>
                         <h3 class="text-xl font-bold text-gray-900">AI Personalization</h3>
                         <p class="mt-2 text-gray-500">CarbonBot provides targeted, high-return suggestions to maximize impact per effort.</p>
                     </div>
-                    <div class="card p-8 text-center border-t-4 border-[#10b981] hover:border-[#065f46] transform hover:scale-[1.01] transition duration-300">
+                    <!-- Card 3: Community & Loyalty -->
+                    <div class="card p-8 text-center border-b-4 border-[#059669] hover:bg-green-50 transition duration-300">
                         <div class="mb-4 flex justify-center">
-                             ${window.getIcon('handshake', 'w-10 h-10')}
+                             <!-- Icon color changed to deeper green for accent -->
+                             ${window.getIcon('handshake', 'w-10 h-10 text-[#059669]')}
                         </div>
                         <h3 class="text-xl font-bold text-gray-900">Community & Loyalty</h3>
                         <p class="mt-2 text-gray-500">The Leaderboard and Quest system drive competitive loyalty and sustained engagement.</p>
@@ -744,9 +848,9 @@
                             
                             <!-- Section: Transportation -->
                             <fieldset class="border-t border-gray-200 pt-6">
-                                <legend class="text-xl font-semibold text-[#065f46] mb-4 flex items-center">
-                                    <svg class="w-5 h-5 mr-2 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 3m0 0l-3 3m3-3h18"></path></svg>
-                                    1. Mobility (Greenest Impact)
+                                <legend class="text-xl font-semibold text-[#10b981] mb-4 flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 3m0 0l-3 3m3-3h18"></path></svg>
+                                    1. Mobility
                                 </legend>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
@@ -762,8 +866,8 @@
                             
                             <!-- Section: Home Energy -->
                             <fieldset class="border-t border-gray-200 pt-6">
-                                <legend class="text-xl font-semibold text-[#065f46] mb-4 flex items-center">
-                                    <svg class="w-5 h-5 mr-2 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                <legend class="text-xl font-semibold text-[#10b981] mb-4 flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                                     2. Home Energy Consumption
                                 </legend>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -784,8 +888,8 @@
 
                             <!-- Section: Diet -->
                             <fieldset class="border-t border-gray-200 pt-6">
-                                <legend class="text-xl font-semibold text-[#065f46] mb-4 flex items-center">
-                                    <svg class="w-5 h-5 mr-2 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882L3 13.5m-3-3l7-7m11 0l7 7"></path></svg>
+                                <legend class="text-xl font-semibold text-[#10b981] mb-4 flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882L3 13.5m-3-3l7-7m11 0l7 7"></path></svg>
                                     3. Diet & Lifestyle
                                 </legend>
                                 <div>
@@ -799,7 +903,7 @@
                             </fieldset>
                             
                             <div class="pt-6">
-                                <button type="submit" class="w-full btn-primary text-white text-xl font-bold py-3 px-6 rounded-lg shadow-xl">
+                                <button type="submit" class="w-full btn-primary text-xl py-3 px-6 rounded-lg shadow-xl">
                                     Analyze & Unlock Dashboard
                                 </button>
                             </div>
@@ -819,44 +923,57 @@
             
             // Mock data for the visualization placeholder
             const breakdown = [
-                { source: 'Transportation', value: p.commuteMiles * 52 * 0.4, color: 'bg-red-500' },
-                { source: 'Home Energy', value: p.kwhMonthly * 12 * ELECTRICITY_KG_PER_KWH, color: 'bg-blue-500' },
-                { source: 'Diet', value: 2500 * DIET_FACTORS[p.diet], color: 'bg-[#065f46]' }, // Deep green
-                { source: 'Flights', value: p.flightsPerYear * 1000, color: 'bg-yellow-500' }
-            ];
-            const maxVal = Math.max(...breakdown.map(i => i.value));
+                { source: 'Transportation', value: p.commuteMiles * 52 * 0.4, color: 'bg-red-500', name: 'Travel' },
+                { source: 'Home Energy', value: p.kwhMonthly * 12 * ELECTRICITY_KG_PER_KWH, color: 'bg-blue-500', name: 'Home' },
+                { source: 'Diet', value: 2500 * DIET_FACTORS[p.diet], color: 'bg-green-600', name: 'Food' },
+                { source: 'Flights', value: p.flightsPerYear * 1000, color: 'bg-yellow-500', name: 'Air' }
+            ].sort((a, b) => b.value - a.value); // Sort descending for better visualization
+
+            const totalBreakdown = breakdown.reduce((sum, item) => sum + item.value, 0);
+            const highestImpact = breakdown[0].source;
 
 
             return `
                 ${window.renderHeader()}
                 <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-                    <h2 class="text-4xl font-extrabold text-gray-900 mb-10">Your Impact Summary</h2>
+                    <h2 class="text-4xl font-extrabold text-gray-900 mb-10">Your Climate Quest Dashboard</h2>
                     
-                    <!-- Top Stats Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-                        <div class="stat-box border-[#065f46] bg-[#ecfdf5] shadow-xl">
-                            <p class="text-lg font-medium text-gray-600">Annual $\text{CO}_2$ Baseline</p>
-                            <p class="text-3xl font-extrabold text-[#065f46] mt-1">${co2Score} kg</p>
-                            <p class="text-sm text-gray-400 mt-2">Target: Below ${avgCo2.toLocaleString()} kg</p>
+                    <!-- Top Stats Grid (Enhanced Styling) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                        <div class="stat-box stat-box-red">
+                            <div class="flex items-center text-gray-500">
+                                ${window.getIcon('co2-red', 'w-6 h-6 mr-2 text-red-500')}
+                                <p class="text-sm font-medium">Annual $\text{CO}_2$ Baseline</p>
+                            </div>
+                            <p class="text-4xl font-extrabold text-gray-900 mt-2">${co2Score} <span class="text-base font-semibold text-gray-500">kg $\text{CO}_2$e</span></p>
+                            <p class="text-xs text-gray-400 mt-2">Target: Below ${avgCo2.toLocaleString()} kg (National Avg)</p>
                         </div>
-                        <div class="stat-box border-[#3b82f6] shadow-xl">
-                            <p class="text-lg font-medium text-gray-600">Total Quest Points</p>
-                            <p class="text-3xl font-extrabold text-[#3b82f6] mt-1">${p.totalPoints.toLocaleString()} Pts</p>
-                            <p class="text-sm text-gray-400 mt-2">Global Rank: #${rank}</p>
+                        <div class="stat-box stat-box-blue">
+                            <div class="flex items-center text-gray-500">
+                                ${window.getIcon('points', 'w-6 h-6 mr-2 text-blue-500')}
+                                <p class="text-sm font-medium">Total Quest Points</p>
+                            </div>
+                            <p class="text-4xl font-extrabold text-gray-900 mt-2">${p.totalPoints.toLocaleString()} <span class="text-base font-semibold text-gray-500">Pts</span></p>
+                            <p class="text-xs text-gray-400 mt-2">Global Rank: <strong class="text-blue-500">#${rank}</strong></p>
                         </div>
-                        <div class="stat-box border-[#ef4444] shadow-xl">
-                            <p class="text-lg font-medium text-gray-600">Total Reduction Achieved</p>
-                            <p class="text-3xl font-extrabold text-[#ef4444] mt-1">${p.co2ReducedKg.toLocaleString()} kg</p>
-                            <p class="text-sm text-gray-400 mt-2">Through completed Quests</p>
+                        <div class="stat-box stat-box-green">
+                            <div class="flex items-center text-gray-500">
+                                ${window.getIcon('reduction', 'w-6 h-6 mr-2 text-green-500')}
+                                <p class="text-sm font-medium">Total Reduction Achieved</p>
+                            </div>
+                            <p class="text-4xl font-extrabold text-gray-900 mt-2">${p.co2ReducedKg.toLocaleString()} <span class="text-base font-semibold text-gray-500">kg $\text{CO}_2$e</span></p>
+                            <p class="text-xs text-gray-400 mt-2">Equivalent to ${Math.round(p.co2ReducedKg / 100)} trees planted</p>
                         </div>
-                        <!-- Group Status Stat Box -->
-                        <div class="stat-box border-[#f97316] shadow-xl">
-                            <p class="text-lg font-medium text-gray-600">Community Group</p>
-                            <p class="text-3xl font-extrabold text-[#f97316] mt-1">
-                                ${currentGroup ? currentGroup.name : 'No Group'}
+                        <div class="stat-box stat-box-orange">
+                            <div class="flex items-center text-gray-500">
+                                ${window.getIcon('group', 'w-6 h-6 mr-2 text-orange-500')}
+                                <p class="text-sm font-medium">Community Group</p>
+                            </div>
+                            <p class="text-2xl font-extrabold text-gray-900 mt-2 truncate">
+                                ${currentGroup ? currentGroup.name : 'Not Joined'}
                             </p>
-                            <p class="text-sm text-gray-400 mt-2">
-                                ${currentGroup ? `Group Score: ${currentGroup.score.toLocaleString()} Pts` : '<button onclick="window.changeView(\'fullLeaderboard\')" class="text-[#3b82f6] hover:underline">View Groups</button>'}
+                            <p class="text-xs text-gray-400 mt-2">
+                                ${currentGroup ? `Group Score: ${currentGroup.score.toLocaleString()} Pts` : '<button onclick="window.changeView(\'fullLeaderboard\')" class="text-orange-500 hover:underline font-semibold">Join a Group</button>'}
                             </p>
                         </div>
                     </div>
@@ -866,21 +983,60 @@
                         <!-- 1. Quests Column (2/3 width) -->
                         <div class="lg:col-span-2 space-y-8">
                             
+                            <!-- Footprint Visualization (New Stacked Bar) -->
+                            <div class="card p-8">
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Footprint Composition</h3>
+                                <p class="text-gray-500 mb-6">Your largest area for high-impact action is: <strong class="text-red-500">${highestImpact}</strong></p>
+                                
+                                <div class="stacked-bar-container flex bg-gray-200">
+                                    ${breakdown.map(item => {
+                                        const percentage = (item.value / totalBreakdown) * 100;
+                                        // Ensure the largest segment has enough space for text
+                                        const text = percentage > 10 ? `${item.name}` : '';
+                                        const textColor = percentage > 25 ? 'text-white' : 'text-gray-900';
+                                        
+                                        return `
+                                            <div style="width: ${percentage.toFixed(1)}%;" 
+                                                 class="stacked-bar-segment ${item.color} ${textColor} text-xs font-bold"
+                                                 title="${item.source}: ${item.value.toLocaleString()} kg $\text{CO}_2$e">
+                                                ${text}
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+
+                                <div class="mt-4 flex flex-wrap justify-between text-sm">
+                                    ${breakdown.map(item => `
+                                        <div class="flex items-center mt-2 mr-4">
+                                            <span class="inline-block w-3 h-3 rounded-full ${item.color} mr-2"></span>
+                                            <span class="text-gray-700">${item.source}: <strong class="font-semibold">${Math.round(item.value).toLocaleString()} kg</strong></span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+
                             <!-- Daily Quests Card -->
                             <div class="card p-8">
                                 <h3 class="text-2xl font-bold text-gray-900 mb-6 flex justify-between items-center">
                                     Daily Quests 
-                                    <span class="text-base font-semibold text-[#10b981]">Maximize Your Score Today</span>
-                                    </h3>
+                                    <span class="text-base font-semibold text-[#10b981]">
+                                        ${window.state.dailyQuests.filter(q => q.complete).length} / ${window.state.dailyQuests.length} Completed
+                                    </span>
+                                </h3>
                                 <div class="space-y-4">
                                     ${window.state.dailyQuests.map(quest => `
-                                        <div class="flex items-center justify-between p-4 bg-green-50 rounded-lg border-l-4 ${quest.complete ? 'border-gray-300' : 'border-[#065f46]'} shadow-md hover:shadow-lg transition">
-                                            <p class="text-base ${quest.complete ? 'text-gray-400 line-through italic' : 'text-gray-700'} font-medium">${quest.text}</p>
+                                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg border-l-4 ${quest.complete ? 'border-green-400' : 'border-yellow-400'} shadow-sm">
+                                            <div class="flex items-center">
+                                                ${quest.complete ? 
+                                                    `<svg class="w-6 h-6 mr-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>` : 
+                                                    `<svg class="w-6 h-6 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M18.83 4.22a9 9 0 11-13.66 0M21 12a9 9 0 01-18 0"></path></svg>`}
+                                                <p class="text-base ${quest.complete ? 'text-gray-500 line-through' : 'text-gray-700'} font-medium">${quest.text}</p>
+                                            </div>
                                             <button 
                                                 onclick="window.handleQuestCompletion(${quest.id}, ${quest.points})"
-                                                class="text-sm font-semibold py-1 px-4 rounded-full transition ${quest.complete ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'btn-primary text-white hover:scale-[1.05]'}"
+                                                class="text-sm font-semibold py-1 px-4 rounded-full transition ${quest.complete ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'btn-primary'}"
                                                 ${quest.complete ? 'disabled' : ''}>
-                                                ${quest.complete ? 'Complete' : `+${quest.points} Pts`}
+                                                ${quest.complete ? 'Done' : `+${quest.points} Pts`}
                                             </button>
                                         </div>
                                     `).join('')}
@@ -888,39 +1044,18 @@
                             </div>
                             
                             <!-- Verification Button (below quests) -->
-                            <button onclick="window.handleVerification()" class="w-full btn-primary text-white text-lg font-bold py-3 px-8 rounded-lg transform hover:scale-[1.01] transition shadow-lg flex items-center justify-center">
+                            <button onclick="window.handleVerification()" class="w-full btn-primary text-lg py-3 px-8 rounded-lg transform transition shadow-lg flex items-center justify-center">
                                 <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 Submit & Verify Daily Actions
                             </button>
                             
-                            <!-- Footprint Visualization (STYLED PLACEHOLDER) -->
-                            <div class="card p-8">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-4">Footprint Breakdown (Annual)</h3>
-                                <p class="text-gray-500 mb-6">Visual representation of your $\text{CO}_2$ sources. This drives CarbonBot's advice.</p>
-                                <div class="space-y-4">
-                                    ${breakdown.map(item => {
-                                        const percentage = (item.value / maxVal) * 100;
-                                        return `
-                                            <div>
-                                                <div class="flex justify-between mb-1">
-                                                    <span class="text-sm font-medium text-gray-700">${item.source}</span>
-                                                    <span class="text-sm font-bold text-gray-900">${Math.round(item.value).toLocaleString()} kg</span>
-                                                </div>
-                                                <div class="h-4 bg-gray-200 rounded-full">
-                                                    <div style="width: ${percentage.toFixed(0)}%;" class="h-4 ${item.color} rounded-full transition-all duration-700"></div>
-                                                </div>
-                                            </div>
-                                        `;
-                                    }).join('')}
-                                </div>
-                            </div>
                         </div>
 
                         <!-- 2. AI Bot & Leaderboard Column (1/3 width) -->
                         <div class="lg:col-span-1 space-y-8">
                             
                             <!-- CarbonBot AI Agent Card -->
-                            <div class="card p-6 border-l-4 border-blue-400">
+                            <div class="card p-6">
                                 <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                                     <span class="inline-block mr-2 w-7 h-7">
                                         <!-- Robot/Bot Icon -->
@@ -928,38 +1063,38 @@
                                     </span>
                                     CarbonBot AI Coach
                                 </h3>
-                                <div class="bg-blue-50/70 p-4 rounded-lg mb-4 h-40 overflow-y-auto text-sm border border-blue-200 shadow-inner">
+                                <div class="bg-gray-50 p-4 rounded-lg mb-4 h-40 overflow-y-auto text-sm border border-gray-200 shadow-inner">
                                     <p class="text-gray-700 leading-relaxed">${window.state.botResponse}</p>
                                 </div>
                                 <form id="bot-form">
                                     <input type="text" placeholder="e.g., How can I reduce my transportation $\text{CO}_2$?"
                                         class="w-full input-style p-2 mb-3" required>
-                                    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg text-sm font-semibold hover:bg-blue-600 transition">
+                                    <button type="submit" class="w-full btn-primary py-2 rounded-lg text-sm font-semibold">
                                         Get AI Recommendation
                                     </button>
                                 </form>
                             </div>
                             
                             <!-- Leaderboard Card -->
-                            <div class="card p-6 cursor-pointer hover:shadow-2xl transition duration-300 transform hover:scale-[1.01]" onclick="window.changeView('fullLeaderboard')">
+                            <div class="card p-6 cursor-pointer hover:shadow-lg transition duration-200" onclick="window.changeView('fullLeaderboard')">
                                 <h3 class="text-2xl font-bold text-gray-900 mb-4 flex justify-between items-center">
-                                    ${window.getIcon('trophy', 'w-6 h-6 mr-2')}
+                                    ${window.getIcon('trophy', 'w-6 h-6 mr-2 text-[#f97316]')}
                                     Global Leaderboard
                                     <span class="text-sm font-medium text-[#3b82f6] hover:underline">View All &rarr;</span>
                                 </h3>
                                 <div class="space-y-2">
                                     <!-- Header Row -->
-                                    <div class="flex justify-between items-center p-2 text-sm font-semibold text-gray-500 border-b-2 border-gray-100">
+                                    <div class="flex justify-between items-center p-2 text-sm font-semibold text-gray-500 border-b border-gray-200">
                                         <span class="w-1/4">Rank</span>
                                         <span class="w-1/2">User</span>
                                         <span class="w-1/4 text-right">Points</span>
                                     </div>
                                     <!-- Data Rows (Top 5) -->
                                     ${boardData.slice(0, 5).map((item, index) => `
-                                        <div class="flex justify-between items-center p-2 rounded-lg transition ${item.id === window.state.userId ? 'bg-[#e0f2f1] font-bold border border-[#065f46]' : 'hover:bg-gray-100'}">
-                                            <span class="w-1/4 text-lg font-extrabold ${index === 0 ? 'text-[#FFD700]' : index === 1 ? 'text-[#C0C0C0]' : index === 2 ? 'text-[#CD7F32]' : 'text-[#10b981]'}">${item.rank}</span>
-                                            <span class="w-1/2 text-gray-700 truncate">${item.name}</span>
-                                            <span class="w-1/4 text-right text-base font-extrabold text-[#065f46]">${item.totalPoints.toLocaleString()}</span>
+                                        <div class="flex justify-between items-center p-2 rounded-lg transition ${item.id === window.state.userId ? 'bg-[#e0f2f1] font-bold border border-[#10b981]' : 'hover:bg-gray-50'}">
+                                            <span class="w-1/4 text-lg font-extrabold text-[#10b981]">${item.rank}</span>
+                                            <span class="w-1/2 text-gray-700 truncate" title="${item.name}">${item.name}</span>
+                                            <span class="w-1/4 text-right text-sm font-medium text-gray-600">${item.totalPoints.toLocaleString()}</span>
                                         </div>
                                     `).join('')}
                                     ${boardData.length === 0 ? `<p class="text-center text-gray-500 py-2 text-sm">No data yet. Complete your first quest!</p>` : ''}
@@ -980,14 +1115,14 @@
             return `
                 ${window.renderHeader()}
                 <main class="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-                    <button onclick="window.changeView('dashboard')" class="text-gray-600 hover:text-[#065f46] mb-6 flex items-center transition font-medium">
+                    <button onclick="window.changeView('dashboard')" class="text-gray-600 hover:text-[#059669] mb-6 flex items-center transition font-medium">
                         <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         Back to Dashboard
                     </button>
-                    <div class="card p-8 mb-8 bg-green-50/30">
+                    <div class="card p-8 mb-8">
                         <h2 class="text-4xl font-extrabold text-gray-900 mb-2 flex items-center">
                             <span class="text-4xl mr-3">
-                                ${window.getIcon('trophy', 'w-10 h-10')}
+                                ${window.getIcon('trophy', 'w-10 h-10 text-[#f97316]')}
                             </span>
                             Full Global Leaderboard
                         </h2>
@@ -995,7 +1130,7 @@
                         
                         <div class="space-y-2">
                             <!-- Header Row -->
-                            <div class="flex justify-between items-center p-3 text-sm font-extrabold text-white bg-[#065f46] rounded-t-lg">
+                            <div class="flex justify-between items-center p-3 text-sm font-extrabold text-white bg-gray-700 rounded-t-lg">
                                 <span class="w-1/6 text-left">RANK</span>
                                 <span class="w-2/5 text-left">USER ID / NAME</span>
                                 <span class="w-1/4 text-center">REDUCTION (kg $\text{CO}_2$)</span>
@@ -1003,7 +1138,7 @@
                             </div>
                             <!-- Data Rows -->
                             ${board.map((item, index) => `
-                                <div class="flex justify-between items-center p-3 rounded-lg transition text-sm ${item.id === window.state.userId ? 'bg-[#e0f2f1] font-bold border-2 border-[#10b981]' : 'hover:bg-gray-50 bg-white border border-gray-100'}">
+                                <div class="flex justify-between items-center p-3 rounded-lg transition text-sm ${item.id === window.state.userId ? 'bg-[#e0f2f1] font-bold border border-[#10b981]' : 'hover:bg-gray-50 bg-white border border-gray-100'}">
                                     <span class="w-1/6 text-left text-lg font-bold ${index === 0 ? 'text-[#FFD700]' : index === 1 ? 'text-[#C0C0C0]' : index === 2 ? 'text-[#CD7F32]' : 'text-gray-600'}">
                                         #${item.rank}
                                     </span>
@@ -1011,7 +1146,7 @@
                                         ${item.name} ${item.id === window.state.userId ? '(You)' : ''}
                                     </span>
                                     <span class="w-1/4 text-center text-red-500 font-semibold">${item.co2ReducedKg.toLocaleString()}</span>
-                                    <span class="w-1/6 text-right text-[#065f46] font-extrabold">${item.totalPoints.toLocaleString()}</span>
+                                    <span class="w-1/6 text-right text-[#059669] font-extrabold">${item.totalPoints.toLocaleString()}</span>
                                 
                                 </div>
                             `).join('')}
@@ -1021,7 +1156,7 @@
                     </div>
 
                     <!-- Available Groups Card (NOW ON FULL LEADERBOARD) -->
-                    <div class="card p-6 border-l-4 border-indigo-400">
+                    <div class="card p-6">
                         <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                             <span class="inline-block mr-2 w-7 h-7">
                                 <!-- Handshake/Group Icon -->
@@ -1032,14 +1167,196 @@
                         <p class="text-gray-500 mb-6">Join a group to contribute to a collective score and access exclusive group quests!</p>
                         <div class="space-y-4">
                             ${window.state.groups.map(group => `
-                                <div class="p-3 border-b border-gray-100 last:border-b-0 ${group.id === p.groupId ? 'bg-indigo-50 rounded-lg border-2 border-indigo-200' : 'hover:bg-gray-50 rounded-lg transition'}">
+                                <div class="p-3 border-b border-gray-100 last:border-b-0 ${group.id === p.groupId ? 'bg-indigo-50 rounded-lg border-2 border-indigo-200' : 'hover:bg-gray-50 rounded-lg'}">
                                     <div class="flex justify-between items-start">
                                         <div class="flex items-center">
                                             ${window.getGroupIcon(group.icon)}
                                             <div>
                                                 <p class="font-semibold text-gray-800">${group.name}</p>
                                                 <p class="text-xs text-gray-500 mt-1">${group.motto}</p>
-                                                <p class="text-sm text-[#065f46] font-medium mt-2">Group Score: ${group.score.toLocaleString()} | Members: ${group.members}</p>
+                                                <p class="text-sm text-[#059669] font-medium mt-2">Group Score: ${group.score.toLocaleString()} | Members: ${group.members}</p>
+                                            </div>
+                                        </div>
+                                        ${group.id === p.groupId 
+                                            ? `<button onclick="window.handleGroupAction('${group.id}', 'leave')" class="text-sm font-semibold py-1 px-3 rounded-full bg-red-500 text-white hover:bg-red-600 transition shadow-md">Leave Group</button>`
+                                            : `<button onclick="window.handleGroupAction('${group.id}', 'join')" class="text-sm font-semibold py-1 px-3 rounded-full bg-[#3b82f6] text-white hover:bg-[#2563eb] transition shadow-md">Join Group</button>`
+                                        }
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </main>
+            `;
+        };
+
+        // --- NEW ACHIEVEMENTS PAGE RENDERER ---
+        window.renderAchievements = () => {
+            const { streaks, badges } = MOCK_ACHIEVEMENT_DATA;
+            const earnedCount = badges.filter(b => b.earned).length;
+
+            // Helper to render streak calendar days
+            const renderCalendar = () => {
+                return MOCK_ACHIEVEMENT_DATA.streaks.last7Days.map((completed, index) => {
+                    const dayLetter = getDayLetter(index);
+                    const isToday = index === 6;
+
+                    let dayClass = completed ? 'streak-complete' : 'streak-missed';
+                    if (isToday) {
+                        dayClass += ' streak-today border-2 border-dashed border-gray-900';
+                    }
+
+                    // Display index 1 (Today) down to 7 (7 days ago) 
+                    const displayDay = 7 - index; 
+
+                    return `
+                        <div class="flex flex-col items-center">
+                            <span class="text-sm text-gray-500 mb-2">${dayLetter}</span>
+                            <div class="achieve-day ${dayClass}">${displayDay}</div>
+                        </div>
+                    `;
+                }).join('');
+            };
+
+            // Helper to render badges
+            const renderBadgesGrid = () => {
+                return badges.map(badge => {
+                    const isEarned = badge.earned;
+                    const containerClasses = isEarned
+                        ? 'p-4 bg-gray-50 rounded-lg text-center border-2 border-yellow-400 shadow-lg'
+                        : 'p-4 bg-gray-200 rounded-lg text-center border-2 border-gray-300 opacity-60';
+
+                    const detailText = isEarned
+                        ? `<p class="text-xs text-[#059669] mt-1 font-semibold">Achieved: ${badge.date}</p>`
+                        : `<p class="text-xs text-gray-500 mt-1">${badge.goal}</p>`;
+
+                    const emoji = isEarned ? badge.emoji : '🔒';
+                    const nameColor = isEarned ? 'text-gray-900' : 'text-gray-500';
+
+                    return `
+                        <div class="${containerClasses} transition duration-200 hover:scale-[1.02]">
+                            <span class="text-5xl block mb-2">${emoji}</span>
+                            <p class="font-extrabold ${nameColor} text-sm">${badge.name}</p>
+                            ${detailText}
+                        </div>
+                    `;
+                }).join('');
+            };
+            
+            return `
+                ${window.renderHeader()}
+                <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-extrabold text-gray-900 mb-10 text-center">
+                        <span class="text-yellow-500 mr-3">🏆</span> Behavioral & Achievement Analytics
+                    </h1>
+
+                    <!-- Streaks Section -->
+                    <div class="card p-6 md:p-8 mb-12 border-t-4 border-[#059669]">
+                        <h2 class="text-2xl font-bold text-[#059669] mb-6 flex items-center">
+                            🔥 Daily Compliance Streaks
+                        </h2>
+                        <div class="flex justify-between items-center mb-6 border-b pb-4">
+                            <div>
+                                <p class="text-gray-500 text-lg">Current Compliance Period:</p>
+                                <p class="text-6xl font-black text-gray-900 mt-1">${streaks.current} <span class="text-2xl font-bold text-gray-600">Days</span></p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 text-lg">Max Compliance Record:</p>
+                                <p class="text-6xl font-black text-yellow-500 mt-1">${streaks.longest} <span class="text-2xl font-bold text-gray-600">Days</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Streak Calendar -->
+                        <div class="flex justify-around bg-gray-50 p-4 rounded-xl border">
+                            ${renderCalendar()}
+                        </div>
+                    </div>
+
+                    <!-- Badges and Achievements Grid Section -->
+                    <div class="card p-6 md:p-8 border-t-4 border-yellow-500">
+                        <h2 class="text-2xl font-bold text-yellow-500 mb-6 flex justify-between items-center">
+                            <span>🏅 Milestones Achieved (${earnedCount}/${badges.length})</span>
+                            <span class="text-base font-semibold text-gray-500">${badges.length - earnedCount} remaining</span>
+                        </h2>
+                        
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                            ${renderBadgesGrid()}
+                        </div>
+                    </div>
+                </main>
+            `;
+        };
+
+
+        window.renderFullLeaderboard = () => {
+            const board = window.state.leaderboard;
+            const userRank = window.state.leaderboard.find(i => i.id === window.state.userId)?.rank || '-';
+            const p = window.state.userProfile;
+            const currentGroup = window.state.groups.find(g => g.id === p.groupId);
+
+            return `
+                ${window.renderHeader()}
+                <main class="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                    <button onclick="window.changeView('dashboard')" class="text-gray-600 hover:text-[#059669] mb-6 flex items-center transition font-medium">
+                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        Back to Dashboard
+                    </button>
+                    <div class="card p-8 mb-8">
+                        <h2 class="text-4xl font-extrabold text-gray-900 mb-2 flex items-center">
+                            <span class="text-4xl mr-3">
+                                ${window.getIcon('trophy', 'w-10 h-10 text-[#f97316]')}
+                            </span>
+                            Full Global Leaderboard
+                        </h2>
+                        <p class="text-gray-500 mb-8">Compete with other users! Your current rank is <strong class="text-[#3b82f6]">#${userRank}</strong>.</p>
+                        
+                        <div class="space-y-2">
+                            <!-- Header Row -->
+                            <div class="flex justify-between items-center p-3 text-sm font-extrabold text-white bg-gray-700 rounded-t-lg">
+                                <span class="w-1/6 text-left">RANK</span>
+                                <span class="w-2/5 text-left">USER ID / NAME</span>
+                                <span class="w-1/4 text-center">REDUCTION (kg $\text{CO}_2$)</span>
+                                <span class="w-1/6 text-right">POINTS</span>
+                            </div>
+                            <!-- Data Rows -->
+                            ${board.map((item, index) => `
+                                <div class="flex justify-between items-center p-3 rounded-lg transition text-sm ${item.id === window.state.userId ? 'bg-[#e0f2f1] font-bold border border-[#10b981]' : 'hover:bg-gray-50 bg-white border border-gray-100'}">
+                                    <span class="w-1/6 text-left text-lg font-bold ${index === 0 ? 'text-[#FFD700]' : index === 1 ? 'text-[#C0C0C0]' : index === 2 ? 'text-[#CD7F32]' : 'text-gray-600'}">
+                                        #${item.rank}
+                                    </span>
+                                    <span class="w-2/5 text-gray-700 font-medium truncate" title="${item.id}">
+                                        ${item.name} ${item.id === window.state.userId ? '(You)' : ''}
+                                    </span>
+                                    <span class="w-1/4 text-center text-red-500 font-semibold">${item.co2ReducedKg.toLocaleString()}</span>
+                                    <span class="w-1/6 text-right text-[#059669] font-extrabold">${item.totalPoints.toLocaleString()}</span>
+                                
+                                </div>
+                            `).join('')}
+                            
+                            ${board.length === 0 ? `<p class="text-center text-gray-500 py-6">Loading leaderboard data...</p>` : ''}
+                        </div>
+                    </div>
+
+                    <!-- Available Groups Card (NOW ON FULL LEADERBOARD) -->
+                    <div class="card p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                            <span class="inline-block mr-2 w-7 h-7">
+                                <!-- Handshake/Group Icon -->
+                                <svg class="text-[#f97316]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 10h-2m-3-1l-3 3 3 3m2-4v5.5a2.5 2.5 0 01-5 0v-5.5M12 21a9 9 0 110-18 9 9 0 010 18z"></path></svg>
+                            </span>
+                            Available Groups ${currentGroup ? `(You are in: <span class="text-[#f97316] ml-2">${currentGroup.name}</span>)` : ''}
+                        </h3>
+                        <p class="text-gray-500 mb-6">Join a group to contribute to a collective score and access exclusive group quests!</p>
+                        <div class="space-y-4">
+                            ${window.state.groups.map(group => `
+                                <div class="p-3 border-b border-gray-100 last:border-b-0 ${group.id === p.groupId ? 'bg-indigo-50 rounded-lg border-2 border-indigo-200' : 'hover:bg-gray-50 rounded-lg'}">
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex items-center">
+                                            ${window.getGroupIcon(group.icon)}
+                                            <div>
+                                                <p class="font-semibold text-gray-800">${group.name}</p>
+                                                <p class="text-xs text-gray-500 mt-1">${group.motto}</p>
+                                                <p class="text-sm text-[#059669] font-medium mt-2">Group Score: ${group.score.toLocaleString()} | Members: ${group.members}</p>
                                             </div>
                                         </div>
                                         ${group.id === p.groupId 
@@ -1087,14 +1404,14 @@
         <div class="flex justify-center items-center min-h-screen">
              <div class="text-center p-8">
                 <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-[#10b981] mx-auto mb-4"></div>
-                <p class="text-gray-600 font-semibold text-lg" style="text-shadow: 1px 1px 2px rgba(16, 185, 129, 0.3);">Initializing Carbon Quest for VC Demo...</p>
+                <p class="text-gray-600">Initializing Carbon Quest for VC Demo...</p>
             </div>
         </div>
     </div>
     
     <!-- Floating CarbonBot Icon (Professional) -->
-    <div class="floating-bot fixed bottom-6 right-6 card p-3 hover:bg-green-50/50 transition" onclick="window.changeView('dashboard');">
-        <svg class="w-9 h-9 text-[#065f46]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.942-.689 2.784-.448.842-1.077 1.543-1.854 2.083a6.002 6.002 0 00-.734-.572c-.17-.116-.34-.231-.51-.347-.384-.262-.772-.519-1.164-.768-1.54-.996-3.134-1.503-4.733-1.503s-3.193.507-4.733 1.503c-.392.249-.78.506-1.164.768-.17.116-.34.231-.51.347a6.002 6.002 0 00-.734.572c-.777-.54-1.406-1.241-1.854-2.083C4.241 11.942 4 10.993 4 10a6 6 0 0110.37-4.24l.953.953a.5.5 0 00.707 0l1.06-.06a.5.5 0 000-.707l-.953-.953A7.962 7.962 0 0118 10z" clip-rule="evenodd"></path></svg>
+    <div class="floating-bot card p-3 hover:bg-gray-50 transition" onclick="window.changeView('dashboard');">
+        <svg class="w-9 h-9 text-[#10b981]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.942-.689 2.784-.448.842-1.077 1.543-1.854 2.083a6.002 6.002 0 00-.734-.572c-.17-.116-.34-.231-.51-.347-.384-.262-.772-.519-1.164-.768-1.54-.996-3.134-1.503-4.733-1.503s-3.193.507-4.733 1.503c-.392.249-.78.506-1.164.768-.17.116-.34.231-.51.347a6.002 6.002 0 00-.734.572c-.777-.54-1.406-1.241-1.854-2.083C4.241 11.942 4 10.993 4 10a6 6 0 0110.37-4.24l.953.953a.5.5 0 00.707 0l1.06-.06a.5.5 0 000-.707l-.953-.953A7.962 7.962 0 0118 10z" clip-rule="evenodd"></path></svg>
         <div class="text-xs font-semibold text-gray-700 mt-1">CarbonBot</div>
     </div>
 </body>
